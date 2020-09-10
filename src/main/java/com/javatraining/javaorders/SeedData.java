@@ -1,14 +1,12 @@
-package com.lambdaschool.crudyorders;
-
-import com.github.javafaker.Faker;
-import com.lambdaschool.crudyorders.models.Agent;
-import com.lambdaschool.crudyorders.models.Customer;
-import com.lambdaschool.crudyorders.models.Order;
-import com.lambdaschool.crudyorders.models.Payment;
-import com.lambdaschool.crudyorders.repositories.AgentsRepository;
-import com.lambdaschool.crudyorders.repositories.CustomersRepository;
-import com.lambdaschool.crudyorders.repositories.OrdersRepository;
-import com.lambdaschool.crudyorders.repositories.PaymentRepository;
+package com.javatraining.javaorders;//import com.github.javafaker.Faker;
+import com.javatraining.javaorders.models.Agent;
+import com.javatraining.javaorders.models.Customer;
+import com.javatraining.javaorders.models.Order;
+import com.javatraining.javaorders.models.Payment;
+import com.javatraining.javaorders.repositories.AgentsRepository;
+import com.javatraining.javaorders.repositories.CustomersRepository;
+import com.javatraining.javaorders.repositories.OrdersRepository;
+import com.javatraining.javaorders.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,25 +22,25 @@ import java.util.Set;
 @Component
 public class SeedData implements CommandLineRunner {
     /**
-     * Connects the customer table to this SeedData method
+     * Connects the customer table to this com.javatraining.javaorders.SeedData method
      */
     @Autowired
     private CustomersRepository custrepos;
 
     /**
-     * Connects the agents table to this SeedData method
+     * Connects the agents table to this com.javatraining.javaorders.SeedData method
      */
     @Autowired
     private AgentsRepository agentrepos;
 
     /**
-     * Connects the orders table to this SeedData method
+     * Connects the orders table to this com.javatraining.javaorders.SeedData method
      */
     @Autowired
     private OrdersRepository ordersrepos;
 
     /**
-     * Connects the payment table to this SeedData method
+     * Connects the payment table to this com.javatraining.javaorders.SeedData method
      */
     @Autowired
     private PaymentRepository paymentrepos;

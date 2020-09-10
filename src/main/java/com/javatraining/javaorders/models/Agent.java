@@ -1,5 +1,7 @@
 package com.javatraining.javaorders.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +16,7 @@ public class Agent
     //#region fields/constructors
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private long agentcode;
 
     private String agentname;
@@ -27,14 +29,16 @@ public class Agent
     @OneToMany(mappedBy = "agent",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
+    @JsonIgnoreProperties(value = "agent", allowSetters = true)
     private List<Customer> customers = new ArrayList<>();
 
     //connect agents with payments
-    @ManyToMany
-            @JoinTable(name = "orderspayments",
-                    joinColumns = @JoinColumn(name="agentid"),
-                    inverseJoinColumns = @JoinColumn( name = "paymentid"))
-    private Set<Payment> payments = new HashSet<>();
+//    @ManyToMany
+//            @JoinTable(name = "orderspayments",
+//                    joinColumns = @JoinColumn(name="agentid"),
+//                    inverseJoinColumns = @JoinColumn( name = "paymentid"))
+//    @JsonIgnoreProperties(value = "agents", allowSetters = true)
+//    private Set<Payment> payments = new HashSet<>();
 
     public Agent(){
 
@@ -107,13 +111,6 @@ public class Agent
         this.customers = customers;
     }
 
-    public Set<Payment> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(Set<Payment> payments) {
-        this.payments = payments;
-    }
 
     //#endregion
 

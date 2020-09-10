@@ -1,5 +1,7 @@
 package com.javatraining.javaorders.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +20,8 @@ public class Payment {
 
     //connecting payments to customer (already set up inside of agent)
     @ManyToMany(mappedBy = "payments")
-    private Set<Agent> agents = new HashSet<>();
+    @JsonIgnoreProperties(value = "payments", allowSetters = true)
+    private Set<Order> orders = new HashSet<>();
 
     public Payment(){
     }
@@ -44,12 +47,12 @@ public class Payment {
         this.type = type;
     }
 
-    public Set<Agent> getAgents() {
-        return agents;
+    public Set<Order> getOrders() {
+        return orders;
     }
 
-    public void setAgents(Set<Agent> agents) {
-        this.agents = agents;
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     //#endregion

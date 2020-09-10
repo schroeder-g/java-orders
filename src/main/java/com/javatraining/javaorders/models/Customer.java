@@ -1,6 +1,8 @@
 package com.javatraining.javaorders.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Customer {
     //#region fields & db modeling
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private long custcode;
 
     @Column(nullable = false)
@@ -29,10 +31,12 @@ public class Customer {
 
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false) //must be given primary id for mapped table
+    @JsonIgnoreProperties(value = "customers", allowSetters = true)
     private Agent agent;
 
     //connect customer to orders (one cust, many orders)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "customer", allowSetters = true)
     private List<Order> orders = new ArrayList<>();
 
     //#endregion

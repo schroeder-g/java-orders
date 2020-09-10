@@ -3,6 +3,7 @@ package com.javatraining.javaorders;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class JavaordersApplication {
 
